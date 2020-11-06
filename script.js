@@ -1,56 +1,26 @@
 const container = document.querySelector('.container');
+const out = document.querySelector('.out');
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+const clear = document.querySelector('#clear');
 
-reset.addEventListener('click', onReset);
-populate(16,16);
-refreshBoxes();
+let decimal = document.querySelector('#decimal');
 
-function populate(height, width) {
-  for (let i=0; i<height; i++) {
-    const row = document.createElement('div');
-    row.setAttribute('id', 'row'+i);
-    row.classList.add('row');
-    
-    for (let j=0; j<width; j++) {
-      const box = document.createElement('div');
-      box.setAttribute('id', 'box'+j);
-      box.classList.add('box');
-      row.appendChild(box);
-    }
-    main.appendChild(row);
-  }
-}
-
-function refreshBoxes() {
-  boxes = document.querySelectorAll('.box');
-  boxes.forEach((box) => {
-    box.addEventListener('mouseover', () => {
-      box.classList.add('box-hover');
-    });
+numbers.forEach((number) => {
+  number.addEventListener('click', () => {
+    out.textContent += number.getAttribute('value');
   });
-}
+});
 
-function remove() {
-  while(main.firstChild) {
-    main.removeChild(main.firstChild);
-  }
-}
+operators.forEach((operator) => {
+});
 
-function onReset() {
-  boxes.forEach((box) => {
-    box.classList.remove('box-hover');
-  });
+clear.addEventListener('click', () => {
+  out.textContent = '';
+});
 
-  let dim = prompt("Choose the dimention (max 100):");
-  if (dim > 100) {
-    dim = 100;
-  }
-  if (dim === '' || dim === null) {
-    dim = 16;
-  }
-
-  remove();
-  populate(dim, dim);
-  refreshBoxes();
+function refresh() {
+  out.textContent = outText;
 }
 
 function add(a, b) {
