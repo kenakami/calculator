@@ -5,6 +5,8 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('#clear');
 const decimal = document.querySelector('#decimal');
+const ce = document.querySelector('#ce');
+const sign = document.querySelector('#sign');
 
 let temp, op;
 let isnew = true;
@@ -57,6 +59,17 @@ clear.addEventListener('click', () => {
   out.textContent = '';
   temp = null;
   op = null;
+});
+
+ce.addEventListener('click', () => {
+  out.textContent = '';
+});
+
+sign.addEventListener('click', () => {
+  if (isnew) {
+    temp = temp * -1;
+  }
+  out.textContent = Number(out.textContent) * -1;
 });
 
 function add(a, b) {
